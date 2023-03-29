@@ -48,14 +48,14 @@ int main(void) {
           std::string str3 = std::to_string(D20).c_str();
           message = str1 + str2 + str3;
           sleep(1000);
-          ventilator.send(message.c_str(), 60);
+          ventilator.send(message.c_str(), message.length());
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
           std::string str3 = std::to_string(D20).c_str();
           message = str1 + str2 + str3;
           sleep(1000);
-          ventilator.send(message.c_str(), 63);
+          ventilator.send(message.c_str(), message.length());
         }
       }
     }

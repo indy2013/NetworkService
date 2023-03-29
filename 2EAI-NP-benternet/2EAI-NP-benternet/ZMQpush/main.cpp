@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <zmq.hpp>
-
+#include "dice.h"
 #ifndef _WIN32
 #include <unistd.h>
 #else
@@ -11,14 +11,17 @@
 
 int main(int argc, char *argv[]) {
 
-  srand(time(NULL));
+  Dice *dice = new Dice();
   // generate a random integer
+  std::string sentence;
+  std::cin >> sentence;
   int i = 0;
-  int D20 = rand() % 20 + 1;
+  int Die = dice->D4();
 
-  std::cout << "Random number send: " << D20 << std::endl;
+
+  std::cout << "Random number send: " << Die << std::endl;
   std::string str1 = "indyPenders>DND>";
-  std::string str2 = std::to_string(D20).c_str();
+  std::string str2 = std::to_string(Die).c_str();
   std::string message = str1 + str2;
   zmq::message_t *msg = new zmq::message_t();
 
@@ -38,8 +41,8 @@ int main(int argc, char *argv[]) {
 
     while (ventilator.connected() && i != 10 /*&& subscriber.connected()*/) {
       sleep(1000);
-      ventilator.send(message.c_str(), 19);
-      std::cout << "SENDED: " << std::to_string(D20).c_str() << std::endl;
+      ventilator.send(message.c_str(), message.length());
+      std::cout << "SENDED: " << std::to_string(Die).c_str() << std::endl;
       i++;
     }
     while (subscriber.connected()) {
