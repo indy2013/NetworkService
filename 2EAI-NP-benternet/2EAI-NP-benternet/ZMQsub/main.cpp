@@ -31,7 +31,7 @@ int main(void) {
     zmq::message_t *msg = new zmq::message_t();
     int i = 0;
     srand(time(NULL));
-    int D20 = rand() % 20 + 1;
+    int Savingthrow = rand() % 20 + 1;
     int valueReceived = 0;
 
     while (subscriber.connected()){
@@ -42,17 +42,17 @@ int main(void) {
       valueReceived = std::stoi(str0);
 
       if (valueReceived != 0) {
-        if (valueReceived < D20) {
+        if (valueReceived < Savingthrow) {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
-          std::string str3 = std::to_string(D20).c_str();
+          std::string str3 = std::to_string(Savingthrow).c_str();
           message = str1 + str2 + str3;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
-          std::string str3 = std::to_string(D20).c_str();
+          std::string str3 = std::to_string(Savingthrow).c_str();
           message = str1 + str2 + str3;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());

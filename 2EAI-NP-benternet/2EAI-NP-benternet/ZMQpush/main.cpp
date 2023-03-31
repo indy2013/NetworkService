@@ -13,16 +13,14 @@ int main(int argc, char *argv[]) {
 
   Dice *dice = new Dice();
   // generate a random integer
-  std::string sentence;
-  std::cin >> sentence;
+  std::string Input;
+  std::cin >> Input;
   int i = 0;
-  int Die = dice->D4();
-
-
-  std::cout << "Random number send: " << Die << std::endl;
+  //int Die = dice->D20();
   std::string str1 = "indyPenders>DND>";
-  std::string str2 = std::to_string(Die).c_str();
+  std::string str2 =  Input.substr(0, 3).c_str();//std::to_string(Die).c_str();
   std::string message = str1 + str2;
+  std::cout << "Die send " << str2 << std::endl;
   zmq::message_t *msg = new zmq::message_t();
 
   try {
