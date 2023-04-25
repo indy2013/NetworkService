@@ -4,7 +4,13 @@ This is a networked dice roller for Dungeons and Dragons, allowing the DM to cha
 
 ## Usage
 ### DM
-As the DM, you can log in to the server using your username and password. Once logged in, you will see a list of players currently connected to the server. From here, you can select a player and change the value of their saving throw by clicking on the appropriate die and entering the new value.
+As the DM, you can Change the Value of saving throws to a random or static vallue by sending the value with IndyPenders>Dm>1D20 or IndyPenders>Dm>20.
 
 ### Players
-As a player, you can log in to the server using your username and password. Once logged in, you will see a list of your current saving throws and their values. To roll a die, simply click on the appropriate die and the result will be displayed. If you succeed in the saving throw, the DM will be notified.
+As a player, you can roll a die to try to succeed a saving throw or to have a duel with a player, simply send a message to IndyPenders>pl>name>1D20>+0+0+0+0+0+0>st for a saving throw or  IndyPenders>pl>name>1D20>+0+0+0+0+0+0>st for a duel. The duel will be revealed when the second player starts a duel.
+
+After having enterted you name ones you don't have to re-enter your name or stats. Example: IndyPenders>1D20>st.
+
+## Network
+
+![image](https://user-images.githubusercontent.com/63802254/234310902-9c2d1c07-939f-43c8-b089-6a4b1936ec17.png)
