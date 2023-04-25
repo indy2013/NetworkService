@@ -13,4 +13,5 @@ After having enterted you name ones you don't have to re-enter your name or stat
 
 ## Network
 
-![image](https://user-images.githubusercontent.com/63802254/234310902-9c2d1c07-939f-43c8-b089-6a4b1936ec17.png)
+![image](https://user-images.githubusercontent.com/63802254/234368552-760b9a76-1d59-4c20-a0e1-8da600bfe65a.png)
+
