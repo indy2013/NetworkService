@@ -4,7 +4,7 @@ This is a networked dice roller for Dungeons and Dragons, allowing the DM to cha
 
 ## Usage
 ### DM
-As the DM, you can Change the Value of saving throws to a random or static vallue by sending the value with IndyPenders>Dm>1D20 or IndyPenders>Dm>20.
+As the DM, you can Change the Value of saving throws to a random or static value by sending the value with IndyPenders>Dm>1D20 or IndyPenders>Dm>20.
 
 ### Players
 As a player, you can roll a die to try to succeed a saving throw or to have a duel with a player, simply send a message to IndyPenders>pl>name>1D20>+0+0+0+0+0+0>st for a saving throw or  IndyPenders>pl>name>1D20>+0+0+0+0+0+0>st for a duel. The duel will be revealed when the second player starts a duel.
