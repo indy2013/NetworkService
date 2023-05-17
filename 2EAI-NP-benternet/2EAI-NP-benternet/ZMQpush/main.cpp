@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     zmq::socket_t ventilator(context, ZMQ_PUSH);
     ventilator.connect("tcp://benternet.pxl-ea-ict.be:24041");
 
-    while (ventilator.connected() && i != 10) {
+    while (ventilator.connected() && i != 1) {
       sleep(1000);
       ventilator.send(message.c_str(), message.length()); //message gets send
       std::cout << "SENDED: " << message.c_str() << std::endl;

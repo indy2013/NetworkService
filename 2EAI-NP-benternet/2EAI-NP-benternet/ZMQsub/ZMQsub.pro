@@ -8,7 +8,9 @@ LIBS += -L$$PWD/../lib -lzmq -lws2_32 -lIphlpapi
 INCLUDEPATH += $$PWD/../include
 
 SOURCES += main.cpp \
-    calculate.cpp
+    calculate.cpp \
+    data.cpp
 
 HEADERS += \
-    calculate.h
+    calculate.h \
+    data.h

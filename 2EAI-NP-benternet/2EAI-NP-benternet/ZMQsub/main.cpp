@@ -4,7 +4,8 @@
 #include <string>
 #include <zmq.hpp>
 #include <QString>
-#include <calculate.h>>
+#include <calculate.h>
+#include <data.h>
 
 #ifndef _WIN32
 #include <unistd.h>
@@ -35,7 +36,11 @@ int main(void) {
     while (subscriber.connected()){
       std::string message;
       subscriber.recv(msg);
+      std::string buffer(static_cast<char*>(msg->data()), msg->size());
       //check if player name is saved in data.cpp.
+      data name;
+      std::string player = name.names(buffer);
+
       //filter the dice (1D20)
       std::string Die = msg->to_string().substr(15, 19);
       std::cout << "Received : [" << Die << "]" << std::endl;
