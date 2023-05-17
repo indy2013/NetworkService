@@ -26,12 +26,12 @@ int main(void) {
     zmq::socket_t subscriber(context, ZMQ_SUB);
     subscriber.connect("tcp://benternet.pxl-ea-ict.be:24042");
 
-    subscriber.setsockopt(ZMQ_SUBSCRIBE, "indyPenders>DND>", 16);
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>DND>", 16);   //socket to receive from
 
     zmq::message_t *msg = new zmq::message_t();
     int i = 0;
     srand(time(NULL));
-    int Savingthrow = rand() % 20 + 1;
+    int Savingthrow = rand() % 20 + 1;  //random value (D20)
     int valueReceived = 0;
 
     while (subscriber.connected()){

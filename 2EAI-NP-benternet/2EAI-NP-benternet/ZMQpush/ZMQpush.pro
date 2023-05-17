@@ -10,8 +10,6 @@ DEFINES += ZMQ_STATIC
 LIBS += -L$$PWD/../lib -lzmq -lws2_32 -lIphlpapi
 INCLUDEPATH += $$PWD/../include
 
-SOURCES += main.cpp \
-    dice.cpp
+SOURCES += main.cpp
 
-HEADERS += \
-    dice.h
+HEADERS +=
