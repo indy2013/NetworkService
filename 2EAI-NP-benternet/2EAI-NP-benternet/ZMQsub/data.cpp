@@ -14,7 +14,6 @@ data::data()
 std::string data::names(std::string msg)
 {
     int i = 0;
-    QMap<QString, int> playerData;
 
     std::string delimiter = ">";
 
@@ -28,15 +27,9 @@ std::string data::names(std::string msg)
         msg.erase(0, pos + delimiter.length());
         List.append( QString::fromStdString(msg));
     }
-    QString
-     //QString::fromStdString
-//    if(i == 3){
-//         std::cout << msg << std::endl;
-//         QMap<QString, int> playerData;
-//         playerData.insert(msg,)
-//         playerData.value()
-//          return msg;
-//    }
+    if(List.size() > 4){
+    playerData.insert(List.at(3),List.at(4));
+    }
     std::cout << msg << std::endl;
     return "";
 }
