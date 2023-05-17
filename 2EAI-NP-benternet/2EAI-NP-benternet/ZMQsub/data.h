@@ -3,6 +3,7 @@
 
 #include <string>
 #include <QString>
+#include <QMap>
 
 class data
 {
@@ -10,7 +11,6 @@ public:
     data();
     std::string names(std::string msg);
 
-private:
      QMap<QString, QString> playerData;
 };
 
