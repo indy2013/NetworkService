@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <zmq.hpp>
+#include <QString>
+#include <calculate.h>>
 
 #ifndef _WIN32
 #include <unistd.h>
@@ -12,35 +14,38 @@
 #endif
 
 int main(void) {
+    srand(time(NULL));
   try {
 
     zmq::context_t context(1);
 
-    // zmq::context_t rec(1);
-
     // Incoming messages come in here
     zmq::socket_t ventilator(context, ZMQ_PUSH);
     ventilator.connect("tcp://benternet.pxl-ea-ict.be:24041");
-    //		subscriber.connect( "tcp://192.168.1.8:24042" );
-    //		subscriber.connect( "tcp://localhost:24042" );
     zmq::socket_t subscriber(context, ZMQ_SUB);
     subscriber.connect("tcp://benternet.pxl-ea-ict.be:24042");
 
-    subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>DND>", 16);   //socket to receive from
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>", 12);   //socket to receive from
 
     zmq::message_t *msg = new zmq::message_t();
-    int i = 0;
-    srand(time(NULL));
-    int Savingthrow = rand() % 20 + 1;  //random value (D20)
+    int i = 0; //counter
+    int Savingthrow = 15;  //fallback saving throw.
     int valueReceived = 0;
 
     while (subscriber.connected()){
       std::string message;
       subscriber.recv(msg);
-      std::string str0 = msg->to_string().substr(16, 17);
-      std::cout << "Received : [" << str0 << "]" << std::endl;
-      valueReceived = std::stoi(str0);
+      //check if player name is saved in data.cpp.
+      //filter the dice (1D20)
+      std::string Die = msg->to_string().substr(15, 19);
+      std::cout << "Received : [" << Die << "]" << std::endl;
+      // Calculate the random value of Die or if static value ignore calculate.cpp.
+      Calculate calc;
+      int DieCalc = 0;
+      DieCalc = calc.Die(Die);
+      std::cout << "Total: " << DieCalc << std::endl;
 
+      //put this in a savingthrow.cpp
       if (valueReceived != 0) {
         if (valueReceived < Savingthrow) {
           std::string str1 = "!IndyPenders>DND>";
@@ -58,6 +63,7 @@ int main(void) {
           ventilator.send(message.c_str(), message.length());
         }
       }
+      //make duel.cpp
     }
 
   } catch (zmq::error_t &ex) {

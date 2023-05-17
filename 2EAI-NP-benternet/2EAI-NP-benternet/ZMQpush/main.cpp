@@ -11,19 +11,17 @@
 
 int main(int argc, char *argv[]) {
 
-  int i = 0;
+  int i = 0; //counter
 
-  std::string str1 = "IndyPenders>DND>";
-  int D20 = rand() % 20 + 1;
-  std::string str2 =  std::to_string(D20).c_str();
-  std::string message = str1 + str2;
-  //std::cout << "Die send " << str2 << std::endl;   delete later
+  //write input here for DM or Player example "IndyPenders>DM>1D20, "IndyPenders>Pl>1D20>name>+0+0+0+0+0+0>str"
+  std::string message;
+  std::cin >> message;
+
 
   zmq::message_t *msg = new zmq::message_t();
 
   try {
     zmq::context_t context(1);
-    // zmq::context_t rec(1);
 
     // Outgoing message go out through here
     zmq::socket_t subscriber(context, ZMQ_SUB);
@@ -32,10 +30,7 @@ int main(int argc, char *argv[]) {
     zmq::socket_t ventilator(context, ZMQ_PUSH);
     ventilator.connect("tcp://benternet.pxl-ea-ict.be:24041");
 
-    //		ventilator.connect( "tcp://192.168.1.8:24041" );
-    //		ventilator.connect( "tcp://localhost:24041" );
-
-    while (ventilator.connected() && i != 10 /*&& subscriber.connected()*/) {
+    while (ventilator.connected() && i != 10) {
       sleep(1000);
       ventilator.send(message.c_str(), message.length()); //message gets send
       std::cout << "SENDED: " << message.c_str() << std::endl;
