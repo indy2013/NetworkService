@@ -7,7 +7,6 @@ Calculate::Calculate()
 
 int Calculate::Die(std::string dice)
 {
-   //srand(time(NULL));
    int Total = 0;
    int Roll = 0;
     int AmountOfDie = std::stoi(dice.substr(0,1).c_str());
@@ -18,6 +17,7 @@ int Calculate::Die(std::string dice)
        Roll = rand() % ValueOfDice + 1;
        Total = Total + Roll;
    }
+    DieValue = Total;
     return Total;
 
 }

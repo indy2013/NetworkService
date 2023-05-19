@@ -10,8 +10,10 @@ class data
 public:
     data();
     std::string names(std::string msg);
+    std::string DMSavingthrow(std::string sav,int Die);
 
-     QMap<QString, QString> playerData;
+    int Savingthrow;
+    QMap<QString, QString> playerData;
 };
 
 #endif // DATA_H

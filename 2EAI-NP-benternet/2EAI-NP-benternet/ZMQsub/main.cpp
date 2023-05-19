@@ -30,39 +30,43 @@ int main(void) {
 
     zmq::message_t *msg = new zmq::message_t();
     int i = 0; //counter
-    int Savingthrow = 15;  //fallback saving throw.
     int valueReceived = 0;
 
     while (subscriber.connected()){
       std::string message;
       subscriber.recv(msg);
+
       std::string buffer(static_cast<char*>(msg->data()), msg->size());
-      //check if player name is saved in data.cpp.
       data name;
+      //check if player name is saved in data.cpp or needs to be added.
       std::string player = name.names(buffer);
 
       //filter the dice (1D20)
       std::string Die = msg->to_string().substr(15, 19);
       std::cout << "Received : [" << Die << "]" << std::endl;
+
       // Calculate the random value of Die or if static value ignore calculate.cpp.
       Calculate calc;
       int DieCalc = 0;
       DieCalc = calc.Die(Die);
+
+      data Savingthrow;
+      std::string SavingthrowValue = Savingthrow.Savingthrow(buffer);
       std::cout << "Total: " << DieCalc << std::endl;
 
       //put this in a savingthrow.cpp
       if (valueReceived != 0) {
-        if (valueReceived < Savingthrow) {
+        if (valueReceived < SavingthrowValue {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
-          std::string str3 = std::to_string(Savingthrow).c_str();
+          std::string str3 = SavingthrowValue.c_str();
           message = str1 + str2 + str3;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
-          std::string str3 = std::to_string(Savingthrow).c_str();
+          std::string str3 = SavingthrowValue.c_str();
           message = str1 + str2 + str3;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
