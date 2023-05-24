@@ -11,9 +11,10 @@ class data
 public:
     data(Calculate*calc);
     std::string names(std::string msg);
+    std::string modifier(std::string msg);
     std::string DMSavingthrow(std::string sav);
 
-    std::string Savingthrow;
+    std::string Savingthrow = "0";
     QMap<QString, QString> playerData;
     Calculate*calc;
 };

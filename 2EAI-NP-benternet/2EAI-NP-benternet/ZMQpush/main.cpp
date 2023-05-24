@@ -13,11 +13,6 @@ int main(int argc, char *argv[]) {
 
   int i = 0; //counter
 
-  //write input here for DM or Player example "IndyPenders>DM>1D20, "IndyPenders>Pl>1D20>name>+0+0+0+0+0+0>str"
-  std::string message;
-  std::cin >> message;
-
-
   zmq::message_t *msg = new zmq::message_t();
 
   try {
@@ -29,6 +24,10 @@ int main(int argc, char *argv[]) {
     subscriber.setsockopt(ZMQ_SUBSCRIBE, "!IndyPenders>DND>", 17);  //socket to receive answer from ZMQsub
     zmq::socket_t ventilator(context, ZMQ_PUSH);
     ventilator.connect("tcp://benternet.pxl-ea-ict.be:24041");
+    while(true){
+    //write input here for DM or Player example "IndyPenders>DM>1D20, "IndyPenders>Pl>1D20>name>+5,+0,+0,+0,+0,+0>str"
+    std::string message;
+    std::cin >> message;
 
     while (ventilator.connected() && i != 1) {
       sleep(1000);
@@ -36,11 +35,13 @@ int main(int argc, char *argv[]) {
       std::cout << "SENDED: " << message.c_str() << std::endl;
       i++;
     }
-    while (subscriber.connected()) {
+    while (subscriber.connected() && i == 1) {
       subscriber.recv(msg);   //answer received
       std::string str0 = msg->to_string().substr(17, 78);
       std::cout << str0 << std::endl;
+      i--;
     }
+}
   } catch (zmq::error_t &ex) {
     std::cerr << "Caught an exception : " << ex.what();
   }

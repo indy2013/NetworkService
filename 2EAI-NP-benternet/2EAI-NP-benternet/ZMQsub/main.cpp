@@ -60,7 +60,8 @@ int main(void) {
         if (DieCalc < std::stoi( SavingthrowValue)) {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
-          int Total = std::stoi( SavingthrowValue) + std::stoi(player);
+          std::string mod = name.modifier(buffer);
+          int Total = std::stoi( SavingthrowValue) + std::stoi(mod);
           std::string TotalSend = std::to_string(Total);
           std::string str3 = TotalSend.c_str() ;
           message = str1 + str2 + str3;
@@ -70,7 +71,11 @@ int main(void) {
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
-          std::string str3 = SavingthrowValue.c_str();
+          std::string mod = name.modifier(buffer);
+          int Total = std::stoi( SavingthrowValue) + std::stoi(mod);
+          std::string TotalSend = std::to_string(Total);
+          std::string str3 = TotalSend.c_str() ;
+          //std::string str3 = SavingthrowValue.c_str();
           message = str1 + str2 + str3;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());

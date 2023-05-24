@@ -1,4 +1,10 @@
 #include "calculate.h"
+#include "data.h"
+#include <QMap>
+#include <Qstring>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 Calculate::Calculate()
 {
@@ -19,5 +25,12 @@ int Calculate::Die(std::string dice)
    }
     DieValue = Total;
     return Total;
+
+}
+
+int Calculate::modifier(std::string msg){
+
+
+
 
 }

@@ -9,7 +9,7 @@ class Calculate
 public:
     Calculate();
     int Die(std::string dice);
-
+    int modifier(std::string msg);
     int DieValue;
 };
 
