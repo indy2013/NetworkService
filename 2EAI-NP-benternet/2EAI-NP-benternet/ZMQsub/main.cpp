@@ -36,19 +36,19 @@ int main(void) {
       std::string message;
       subscriber.recv(msg);
 
-      std::string buffer(static_cast<char*>(msg->data()), msg->size());
-      data name;
-      //check if player name is saved in data.cpp or needs to be added.
-      std::string player = name.names(buffer);
+
 
       //filter the dice (1D20)
       std::string Die = msg->to_string().substr(15, 19);
       std::cout << "Received : [" << Die << "]" << std::endl;
-
       // Calculate the random value of Die or if static value ignore calculate.cpp.
       Calculate calc;
       int DieCalc = 0;
       DieCalc = calc.Die(Die);
+      std::string buffer(static_cast<char*>(msg->data()), msg->size());
+      data name(&calc);
+      //check if player name is saved in data.cpp or needs to be added.
+      std::string player = name.names(buffer);
 
       data Savingthrow(&calc);
       std::string SavingthrowValue = Savingthrow.DMSavingthrow(buffer);
@@ -57,10 +57,12 @@ int main(void) {
 
       //put this in a savingthrow.cpp
       if (DieCalc != 0) {
-        if (DieCalc < std::stoi( SavingthrowValue )) {
+        if (DieCalc < std::stoi( SavingthrowValue)) {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
-          std::string str3 = SavingthrowValue.c_str();
+          int Total = std::stoi( SavingthrowValue) + std::stoi(player);
+          std::string TotalSend = std::to_string(Total);
+          std::string str3 = TotalSend.c_str() ;
           message = str1 + str2 + str3;
            std::cout << "Test "<< std::endl;
           sleep(1000);

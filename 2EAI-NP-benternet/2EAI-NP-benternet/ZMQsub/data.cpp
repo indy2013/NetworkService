@@ -14,25 +14,19 @@ std::string data::names(std::string msg) {
   std::string delimiter = ">";
   size_t pos = 0;
   std::string token;
-  QList<QString> List;
-  while ((pos = msg.find(delimiter)) != std::string::npos) {
-    token = msg.substr(0, pos);
-    std::cout << token << std::endl;
-    msg.erase(0, pos + delimiter.length());
-    List.append(QString::fromStdString(msg));
-  }
-  if (List.size() > 4) {
-    if (List[2] == "Pl" || List[2] == "PL") { // dubbel safety
-      if (playerData.contains(List[3])) {
+  QList<QString> List = QString::fromStdString(msg).split('>');
 
+  if (List.size() > 4) {
+    if (List[1] == "Pl" || List[1] == "PL") { // dubbel safety
+      if (playerData.contains(List[2])) {
+        return playerData[List[2]].toStdString();
       } else {
-        playerData.insert(List.at(3), List.at(4));
+        playerData.insert(List.at(2), List.at(3));
       }
     }
-  } else {
   }
   // std::cout << msg << std::endl;
-  return "";
+  return "0";
 }
 
 std::string data::DMSavingthrow(std::string msg) {
