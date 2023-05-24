@@ -9,6 +9,8 @@ class Calculate
 public:
     Calculate();
     int Die(std::string dice);
+
+    int DieValue;
 };
 
 #endif // CALCULATE_H

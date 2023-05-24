@@ -50,17 +50,19 @@ int main(void) {
       int DieCalc = 0;
       DieCalc = calc.Die(Die);
 
-      data Savingthrow;
-      std::string SavingthrowValue = Savingthrow.Savingthrow(buffer);
+      data Savingthrow(&calc);
+      std::string SavingthrowValue = Savingthrow.DMSavingthrow(buffer);
+      std::cout << "Dm: " << SavingthrowValue.c_str() << std::endl;
       std::cout << "Total: " << DieCalc << std::endl;
 
       //put this in a savingthrow.cpp
-      if (valueReceived != 0) {
-        if (valueReceived < SavingthrowValue {
+      if (DieCalc != 0) {
+        if (DieCalc < std::stoi( SavingthrowValue )) {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
           std::string str3 = SavingthrowValue.c_str();
           message = str1 + str2 + str3;
+           std::cout << "Test "<< std::endl;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
         } else {
