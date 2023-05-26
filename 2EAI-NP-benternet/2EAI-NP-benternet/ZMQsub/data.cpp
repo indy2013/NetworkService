@@ -18,6 +18,9 @@ std::string data::names(std::string msg) {
       return playerData[List[3]].toStdString();
     } else {
       playerData.insert(List.at(3), List.at(4));
+      std::cout << "dit is de list3 name data: "
+                    << playerData[List[3]].toStdString() /*data.toStdString()*/ << std::endl;
+
     }
   }
 
@@ -41,25 +44,38 @@ std::string data::DMSavingthrow(std::string msg) {
 std::string data::modifier(std::string msg) {
 
   QList<QString> List = QString::fromStdString(msg).split('>');
-  QString data = playerData[List[3]].toStdString().c_str();
-    QList<QString> mods = data.split(',');
-    std::cout << "dit is de data: " << mods[0].toStdString()/*data.toStdString()*/ << std::endl;
-  if (List.last() == "str") {
-    return mods[0].toStdString();
-  } else if (List.last() == "dex") {
-    return mods[1].toStdString();
-  } else if (List.last() == "con") {
-    return mods[2].toStdString();
-  } else if (List.last() == "int") {
-    return mods[3].toStdString();
-  } else if (List.last() == "wis") {
-    return mods[4].toStdString();
-  } else if (List.last() == "cha") {
-    return mods[5].toStdString();
-  } else {
+  if (List[1].toStdString() == "Dm" || List[1].toStdString() == "DM") {
     return "0";
+  } else {
+    //QString data = playerData[List[3]] /*.toStdString().c_str()*/;
+//    std::cout << "dit is de list3: "
+//              << List[3].toStdString() /*data.toStdString()*/ << std::endl;
+      std::cout << "dit is de list3 name data2: "
+                    << playerData[List[3]].toStdString() /*data.toStdString()*/ << std::endl;
+    QList<QString> mods = playerData[List[3]].split(',');
 
 
+    if (List.last() == "str") {
+         std::cout << "dit is de data: "<< mods[0].toStdString() << std::endl;
+      return mods[0].toStdString();
+    } else if (List.last() == "dex") {
+         std::cout << "dit is de data: "<< mods[1].toStdString() << std::endl;
+      return mods[1].toStdString();
+    } else if (List.last() == "con") {
+         std::cout << "dit is de data: "<< mods[2].toStdString() << std::endl;
+      return mods[2].toStdString();
+    } else if (List.last() == "int") {
+         std::cout << "dit is de data: "<< mods[3].toStdString() << std::endl;
+      return mods[3].toStdString();
+    } else if (List.last() == "wis") {
+         std::cout << "dit is de data: "<< mods[4].toStdString() << std::endl;
+      return mods[4].toStdString();
+    } else if (List.last() == "cha") {
+         std::cout << "dit is de data: "<< mods[5].toStdString() << std::endl;
+      return mods[5].toStdString();
+    } else {
+      return "0";
+    }
   }
   return "0";
 }
