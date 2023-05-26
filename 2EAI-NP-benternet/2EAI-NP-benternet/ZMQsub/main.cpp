@@ -27,7 +27,7 @@ int main(void) {
     subscriber.connect("tcp://benternet.pxl-ea-ict.be:24042");
 
     subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>", 12);   //socket to receive from
-    while(true){
+
     zmq::message_t *msg = new zmq::message_t();
     int i = 0; //counter
     int valueReceived = 0;
@@ -47,7 +47,7 @@ int main(void) {
       DieCalc = calc.Die(Die);
       std::string buffer(static_cast<char*>(msg->data()), msg->size());
       std::cout << "Received : [" << buffer << "]" << std::endl;
-      data name(&calc);
+
       //check if player name is saved in data.cpp or needs to be added.
       std::string player = name.names(buffer);
 
@@ -83,7 +83,7 @@ int main(void) {
         }
       }
       //make duel.cpp
-    }
+
 }
   } catch (zmq::error_t &ex) {
     std::cerr << "Caught an exception : " << ex.what();

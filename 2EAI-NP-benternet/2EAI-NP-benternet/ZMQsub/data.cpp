@@ -12,14 +12,20 @@ data::data(Calculate *calc) : calc(calc) {}
 std::string data::names(std::string msg) {
 
   QList<QString> List = QString::fromStdString(msg).split('>');
+  std::cout << std::endl << " DEBUG TEST" << std:: endl;
+      for (int i = 0; i < List.size(); ++i) {
+          std::cout << List.value(i).toStdString() << std::endl;
+      }
+  std::cout << std::endl << " DEBUG TEST" << std:: endl;
+  if (List.value(1) == "Pl" || List.value(1) == "PL") {
 
-  if (List[1] == "Pl" || List[1] == "PL") {
-    if (playerData.contains(List[3])) {
-      return playerData[List[3]].toStdString();
+    if (playerData.contains(List.value(3))) {
+std::cout << "die is er in gegaan"<< std::endl;
+      return playerData[List.value(3)].toStdString();
     } else {
-      playerData.insert(List.at(3), List.at(4));
+      playerData.insert(List.value(3), List.value(4));
       std::cout << "dit is de list3 name data: "
-                    << playerData[List[3]].toStdString() /*data.toStdString()*/ << std::endl;
+                    << playerData[List.value(3)].toStdString() /*data.toStdString()*/ << std::endl;
 
     }
   }
