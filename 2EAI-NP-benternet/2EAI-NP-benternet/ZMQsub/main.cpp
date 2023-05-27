@@ -31,7 +31,11 @@ int main(void) {
     zmq::message_t *msg = new zmq::message_t();
     int i = 0; //counter
     int valueReceived = 0;
-
+    data name;
+    data Savingthrow;
+    int DieCalc = 15;
+    std::string SavingthrowValue = "15";
+    while(true){
     while (subscriber.connected()){
       std::string message;
       subscriber.recv(msg);
@@ -40,20 +44,19 @@ int main(void) {
 
       //filter the dice (1D20)
       std::string Die = msg->to_string().substr(15, 19);
-     // std::cout << "Received : [" << Die << "]" << std::endl;
-      // Calculate the random value of Die or if static value ignore calculate.cpp.
       Calculate calc;
-      int DieCalc = 0;
       DieCalc = calc.Die(Die);
       std::string buffer(static_cast<char*>(msg->data()), msg->size());
-      std::cout << "Received : [" << buffer << "]" << std::endl;
+      //std::cout << "Received : [" << buffer << "]" << std::endl;
 
       //check if player name is saved in data.cpp or needs to be added.
       std::string player = name.names(buffer);
 
-      data Savingthrow(&calc);
-      std::string SavingthrowValue = Savingthrow.DMSavingthrow(buffer);
+
+      SavingthrowValue = Savingthrow.DMSavingthrow(buffer,DieCalc);
       std::cout << "Dm: " << SavingthrowValue.c_str() << std::endl;
+      std::cout << "Rolled (no mod): " << DieCalc << std::endl;
+      DieCalc = DieCalc + std::stoi(name.modifier(buffer));
       std::cout << "Total: " << DieCalc << std::endl;
 
       //put this in a savingthrow.cpp
@@ -61,27 +64,30 @@ int main(void) {
         if (DieCalc < std::stoi( SavingthrowValue)) {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You Failed the saving throw, you needed: ";
-          std::string mod = name.modifier(buffer);
-          int Total = std::stoi( SavingthrowValue) + std::stoi(mod);
+          int Total = std::stoi( SavingthrowValue) ;
           std::string TotalSend = std::to_string(Total);
           std::string str3 = TotalSend.c_str() ;
-          message = str1 + str2 + str3;
+          std::string str4 = "\n You rolled a: " ;
+          std::string str5 = std::to_string(DieCalc).c_str() ;
+          message = str1 + str2 + str3 + str4 + str5;
            std::cout << "Test "<< std::endl;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
-          std::string mod = name.modifier(buffer);
           int Total = std::stoi( SavingthrowValue) + std::stoi(mod);
           std::string TotalSend = std::to_string(Total);
           std::string str3 = TotalSend.c_str() ;
-          //std::string str3 = SavingthrowValue.c_str();
-          message = str1 + str2 + str3;
+          std::string str4 = "\n You rolled a: " ;
+          std::string str5 = std::to_string(DieCalc).c_str() ;
+
+          message = str1 + str2 + str3 + str4 + str5;
           sleep(1000);
           ventilator.send(message.c_str(), message.length());
         }
       }
+    }
       //make duel.cpp
 
 }

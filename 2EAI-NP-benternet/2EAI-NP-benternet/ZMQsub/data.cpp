@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 
+data::data(){}
 data::data(Calculate *calc) : calc(calc) {}
 
 std::string data::names(std::string msg) {
@@ -34,14 +35,16 @@ std::cout << "die is er in gegaan"<< std::endl;
   return "0";
 }
 
-std::string data::DMSavingthrow(std::string msg) {
+std::string data::DMSavingthrow(std::string msg,int DieCalc){
   // Calculate DieValue;
-  int Die = calc->DieValue;
+  int Die = DieCalc;//calc->DieValue;
+  std::cout<< Die << std::endl;
   QList<QString> List = QString::fromStdString(msg).split('>');
   if (List[1].toStdString() == "Dm" || List[1].toStdString() == "DM") {
     Savingthrow = std::to_string(Die);
   } else if (Savingthrow == "0") {
-    Savingthrow = "15";
+
+    return Savingthrow;
   }
   std::cout << "List[1]" << List[1].toStdString() /*.substr(0,2)*/ << std::endl;
   return Savingthrow;
