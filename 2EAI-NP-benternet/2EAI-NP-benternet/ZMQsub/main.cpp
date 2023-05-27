@@ -76,7 +76,7 @@ int main(void) {
         } else {
           std::string str1 = "!IndyPenders>DND>";
           std::string str2 = "You succeeded the saving throw, you needed: ";
-          int Total = std::stoi( SavingthrowValue) + std::stoi(mod);
+          int Total = std::stoi( SavingthrowValue);
           std::string TotalSend = std::to_string(Total);
           std::string str3 = TotalSend.c_str() ;
           std::string str4 = "\n You rolled a: " ;
