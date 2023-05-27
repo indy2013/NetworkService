@@ -8,16 +8,18 @@
 #include <string>
 
 data::data(){}
-data::data(Calculate *calc) : calc(calc) {}
+
 
 std::string data::names(std::string msg) {
 
   QList<QString> List = QString::fromStdString(msg).split('>');
-  std::cout << std::endl << " DEBUG TEST" << std:: endl;
-      for (int i = 0; i < List.size(); ++i) {
-          std::cout << List.value(i).toStdString() << std::endl;
-      }
-  std::cout << std::endl << " DEBUG TEST" << std:: endl;
+
+//  std::cout << std::endl << " DEBUG TEST" << std:: endl;
+//      for (int i = 0; i < List.size(); ++i) {
+//          std::cout << List.value(i).toStdString() << std::endl;
+//      }
+//  std::cout << std::endl << " DEBUG TEST" << std:: endl;
+
   if (List.value(1) == "Pl" || List.value(1) == "PL") {
 
     if (playerData.contains(List.value(3))) {
@@ -56,11 +58,9 @@ std::string data::modifier(std::string msg) {
   if (List[1].toStdString() == "Dm" || List[1].toStdString() == "DM") {
     return "0";
   } else {
-    //QString data = playerData[List[3]] /*.toStdString().c_str()*/;
-//    std::cout << "dit is de list3: "
-//              << List[3].toStdString() /*data.toStdString()*/ << std::endl;
-      std::cout << "dit is de list3 name data2: "
-                    << playerData[List[3]].toStdString() /*data.toStdString()*/ << std::endl;
+
+//      std::cout << "dit is de list name data2: "
+//                    << playerData[List[3]].toStdString() /*data.toStdString()*/ << std::endl;
     QList<QString> mods = playerData[List[3]].split(',');
 
 

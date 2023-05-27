@@ -10,7 +10,7 @@ class data
 {
 public:
     data();
-    data(Calculate*calc);
+
     std::string names(std::string msg);
     std::string modifier(std::string msg);
     std::string DMSavingthrow(std::string sav,int DieCalc);

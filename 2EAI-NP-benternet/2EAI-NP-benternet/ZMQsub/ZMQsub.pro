@@ -9,8 +9,10 @@ INCLUDEPATH += $$PWD/../include
 
 SOURCES += main.cpp \
     calculate.cpp \
-    data.cpp
+    data.cpp \
+    send.cpp
 
 HEADERS += \
     calculate.h \
-    data.h
+    data.h \
+    send.h
