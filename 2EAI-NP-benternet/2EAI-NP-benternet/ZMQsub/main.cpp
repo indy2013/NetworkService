@@ -31,11 +31,13 @@ int main(void) {
                           12); // socket to receive from
 
     zmq::message_t *msg = new zmq::message_t();
+
     data name;
     data Savingthrow;
     Send editMsg;
     int DieCalc = 15;
     std::string SavingthrowValue = "15";
+
     while (true) {
       while (subscriber.connected()) {
         std::string message;
@@ -46,7 +48,6 @@ int main(void) {
         Calculate calc;
         DieCalc = calc.Die(Die);
         std::string buffer(static_cast<char *>(msg->data()), msg->size());
-        // std::cout << "Received : [" << buffer << "]" << std::endl;
 
         // check if player name is saved in data.cpp or needs to be added.
         std::string player = name.names(buffer);
@@ -60,9 +61,8 @@ int main(void) {
 
         std::cout << "Total: " << DieCalc << std::endl;
 
-
         message = editMsg.MsgContruct(buffer, DieCalc, SavingthrowValue);
-        // put this in a savingthrow.cpp
+
         std::cout<< message << std::endl;
         sleep(1000);
         ventilator.send(message.c_str(), message.length());
