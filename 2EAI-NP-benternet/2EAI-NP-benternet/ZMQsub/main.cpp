@@ -64,7 +64,7 @@ int main(void) {
         message = editMsg.MsgContruct(buffer, DieCalc, SavingthrowValue);
         // put this in a savingthrow.cpp
         std::cout<< message << std::endl;
-        sleep(1000);
+        sleep(1500);
         ventilator.send(message.c_str(), message.length());
       }
       // make duel.cpp
