@@ -36,6 +36,7 @@ int main(void) {
     data Savingthrow;
     Send editMsg;
     int DieCalc = 15;
+    int DCount = 0;
     std::string SavingthrowValue = "15";
 
     while (true) {
@@ -60,6 +61,7 @@ int main(void) {
         DieCalc = DieCalc + std::stoi(name.modifier(buffer));
 
         std::cout << "Total: " << DieCalc << std::endl;
+        // make duel.cpp
 
         message = editMsg.MsgContruct(buffer, DieCalc, SavingthrowValue);
 
@@ -67,7 +69,7 @@ int main(void) {
         sleep(1000);
         ventilator.send(message.c_str(), message.length());
       }
-      // make duel.cpp
+
     }
   } catch (zmq::error_t &ex) {
     std::cerr << "Caught an exception : " << ex.what();

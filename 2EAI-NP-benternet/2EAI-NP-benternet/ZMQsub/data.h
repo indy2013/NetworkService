@@ -14,9 +14,12 @@ public:
     std::string names(std::string msg);
     std::string modifier(std::string msg);
     std::string DMSavingthrow(std::string sav,int DieCalc);
+    std::string duelData(std::string msg,int DieCalc);
 
     std::string Savingthrow = "0";
     QMap<QString, QString> playerData;
+     QMap<QString, QString> playerRoll;
+
     Calculate*calc;
 };
 
