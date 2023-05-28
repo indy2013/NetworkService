@@ -94,13 +94,12 @@ std::string data::duelData(std::string msg, int DieCalc){
     QList<QString> List = QString::fromStdString(msg).split('>');
     if (List[List.size() - 2] == "duel") {
         if (playerRoll.contains(List.value(3))) {
-          return playerRoll[List.value(3)].toStdString();
+            return "0";
+          //return playerRoll[List.value(3)].toStdString();
         } else {
-          playerRoll.insert(List.value(3), std::to_string( DieCalc));
-          std::cout << "dit is de list3 name data: "
-                        << playerData[List.value(3)].toStdString() /*data.toStdString()*/ << std::endl;
+          playerRoll.insert(List.value(3), QString::fromStdString(std::to_string(DieCalc)));
     }
 
-
-  //
+}
+  return "0";
 }
