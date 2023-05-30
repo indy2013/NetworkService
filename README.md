@@ -1,3 +1,4 @@
+**Outdated**
 # DnD Dice Network
 
 This is a networked dice roller for Dungeons and Dragons, allowing the DM to change values of saving throws and players to roll their dice of choice in order to succeed in saving throws.
