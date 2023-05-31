@@ -27,8 +27,7 @@ int main(void) {
     zmq::socket_t subscriber(context, ZMQ_SUB);
     subscriber.connect("tcp://benternet.pxl-ea-ict.be:24042");
 
-    subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>",
-                          12); // socket to receive from
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, "IndyPenders>",12); // socket to receive from
 
     zmq::message_t *msg = new zmq::message_t();
     data name;
@@ -46,7 +45,7 @@ int main(void) {
         Calculate calc;
         DieCalc = calc.Die(Die);
         std::string buffer(static_cast<char *>(msg->data()), msg->size());
-        // std::cout << "Received : [" << buffer << "]" << std::endl;
+
 
         // check if player name is saved in data.cpp or needs to be added.
         std::string player = name.names(buffer);
@@ -60,14 +59,13 @@ int main(void) {
 
         std::cout << "Total: " << DieCalc << std::endl;
 
-
+        //puts message togather and sees if savingthrow is bigger or smaller then needed.
         message = editMsg.MsgContruct(buffer, DieCalc, SavingthrowValue);
         // put this in a savingthrow.cpp
         std::cout<< message << std::endl;
         sleep(1500);
         ventilator.send(message.c_str(), message.length());
       }
-      // make duel.cpp
     }
   } catch (zmq::error_t &ex) {
     std::cerr << "Caught an exception : " << ex.what();

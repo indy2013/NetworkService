@@ -10,7 +10,7 @@ std::string Send::MsgContruct(std::string msg, int DieCalc,
   if (List[1].toStdString() == "Dm" || List[1].toStdString() == "DM") {
 
     std::string str1 = "!IndyPenders>DND>";
-    std::string str2 = "Dm changed savingthrow succeed to: ";
+    std::string str2 = "Dm changed savingthrow to: ";
     std::string str3 = std::to_string(DieCalc).c_str();
     std::string message = str1 + str2 + str3;
 
