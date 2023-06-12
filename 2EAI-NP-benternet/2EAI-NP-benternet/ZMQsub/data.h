@@ -17,6 +17,7 @@ public:
 
     std::string Savingthrow = "0";
     QMap<QString, QString> playerData;
+    QMap<QString, QString> playerProf;
     Calculate*calc;
 };
 

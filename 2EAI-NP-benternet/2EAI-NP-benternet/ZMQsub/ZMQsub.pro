@@ -10,9 +10,11 @@ INCLUDEPATH += $$PWD/../include
 SOURCES += main.cpp \
     calculate.cpp \
     data.cpp \
+    duel.cpp \
     send.cpp
 
 HEADERS += \
     calculate.h \
     data.h \
+    duel.h \
     send.h

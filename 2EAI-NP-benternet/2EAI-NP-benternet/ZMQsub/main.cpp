@@ -4,6 +4,7 @@
 #include <calculate.h>
 #include <cstdlib>
 #include <data.h>
+#include "duel.h"
 #include <iostream>
 #include <string>
 #include <zmq.hpp>
@@ -32,6 +33,7 @@ int main(void) {
     zmq::message_t *msg = new zmq::message_t();
     data name;
     data Savingthrow;
+    Calculate calc;
     Send editMsg;
     int DieCalc = 15;
     std::string SavingthrowValue = "15";
@@ -39,18 +41,37 @@ int main(void) {
       while (subscriber.connected()) {
         std::string message;
         subscriber.recv(msg);
+         std::string buffer(static_cast<char *>(msg->data()), msg->size());
+        QList<QString> List = QString::fromStdString(buffer).split('>');
 
         // filter the dice (1D20)
+        if (List[1].toStdString() == "Duel" || List[1].toStdString() == "duel") {}
+        else{
         std::string Die = msg->to_string().substr(15, 19);
-        Calculate calc;
+
         DieCalc = calc.Die(Die);
-        std::string buffer(static_cast<char *>(msg->data()), msg->size());
+        }
+
+
+
 
 
         // check if player name is saved in data.cpp or needs to be added.
         std::string player = name.names(buffer);
 
+
+        if (List[1].toStdString() == "Duel" || List[1].toStdString() == "duel") {
+            std::cout<< "before entered DuelFight" << std::endl;
+          Duel fight(name, calc);
+
+          message = fight.DuelFight(buffer);
+          std::cout<< message << std::endl;
+          sleep(1500);
+          ventilator.send(message.c_str(), message.length());
+
+          }else{
         SavingthrowValue = Savingthrow.DMSavingthrow(buffer, DieCalc);
+
 
         std::cout << "Dm: " << SavingthrowValue.c_str() << std::endl;
         std::cout << "Rolled (no mod): " << DieCalc << std::endl;
@@ -65,6 +86,7 @@ int main(void) {
         std::cout<< message << std::endl;
         sleep(1500);
         ventilator.send(message.c_str(), message.length());
+        }
       }
     }
   } catch (zmq::error_t &ex) {

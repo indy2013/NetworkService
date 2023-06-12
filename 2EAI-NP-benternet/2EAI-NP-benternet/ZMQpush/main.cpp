@@ -26,6 +26,8 @@ int main(int argc, char *argv[]) {
     ventilator.connect("tcp://benternet.pxl-ea-ict.be:24041");
     while(true){
     //write input here for DM or Player example "IndyPenders>DM>1D20, "IndyPenders>Pl>1D20>name>+5,+0,+0,+0,+0,+0>str"
+
+    //write input here for DM or Player example "IndyPenders>DM>1D20, "IndyPenders>Pl>1D20>name>+5,+0,+0,+0,+0,+0>+3>str+"   ,IndyPenders>Duel>name>name1>1d20>str+>str(exam version)
     std::string message;
     std::cin >> message;
 
