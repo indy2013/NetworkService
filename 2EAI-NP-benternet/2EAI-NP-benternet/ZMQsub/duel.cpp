@@ -33,8 +33,12 @@ std::string Duel::DuelFight(std::string msg) {
     QString prof2 = playerDataInstance.playerProf[List[3]];
 
 std::cout<< "Qlist done" << std::endl;
+std::cout<< "DiceResult1 before " << diceResult1 << std::endl;
+std::cout<< "DiceResult2 before " << diceResult2 << std::endl;
+std::cout<< "Qlist done" << std::endl;
 if (List[5] == "str") {
     diceResult1 = diceResult1 + mods1[0].toInt();
+
 }else if (List[5] == "dex") {
     diceResult1 = diceResult1 + mods1[1].toInt();
 }else if (List[5] == "con") {
@@ -89,6 +93,8 @@ if (List[6] == "str") {
 }else{
     diceResult2 = 0;
 }
+std::cout<< "DiceResult1 after " << diceResult1 << std::endl;
+std::cout<< "DiceResult2 after " << diceResult2 << std::endl;
 std::string str0 = "!IndyPenders>DND>";
 std::cout<< "Making msg" << std::endl;
 std::string str1 = "Player 1 Rolled: ";
